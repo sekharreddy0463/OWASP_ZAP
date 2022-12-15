@@ -22,11 +22,16 @@ steps:
 - task: CmdLine@2
   inputs:
         script: |
-          docker run --rm -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-stable zap-full-scan.py -t https://www.zaproxy.org/ -r full-scan-report.html
+          docker run --rm -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-stable zap-baseline-scan.py -t https://www.zaproxy.org/ -r full-scan-report.html
           true
-
-- task: PublishBuildArtifacts@1
+- task: PublishBuildArtifacts@1    
+  displayName: 'Publish Artifact: drop'
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'          
+
+#- task: PublishBuildArtifacts@1
+ # inputs:
+ #   PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+ #   ArtifactName: 'drop'
+ #   publishLocation: 'Container'
+ 
