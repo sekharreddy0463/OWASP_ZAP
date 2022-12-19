@@ -24,7 +24,7 @@ steps:
   inputs:
         script: |
           docker run --rm -v $(pwd)/report:/zap/wrk/:rw -t owasp/zap2docker-stable zap-baseline.py -t https://example.com -r baseline-scan-report.html -s '/src' -o '/report' --format "HTML"
-      true
+          true
 - task: PublishBuildArtifacts@1    
   displayName: 'Publish Artifact: drop'
   inputs:
